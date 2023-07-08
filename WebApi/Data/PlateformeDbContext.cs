@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApi.Models;
 
-namespace WebApi.Models.PlateformeModels
+namespace WebApi.Data
 {
     public class PlateformeDbContext : DbContext
     {
-        public PlateformeDbContext(DbContextOptions options) : base(options) { }
         public DbSet<UtilisateurModel> Utilisateurs { get; set; }
         public DbSet<LoginModel> Login { get; set; }
         public DbSet<AideSoignanteModel> AideSoignantes { get; set; }
@@ -12,5 +12,6 @@ namespace WebApi.Models.PlateformeModels
         public DbSet<PersonneAgeModel> PersonneAges { get; set; }
         public DbSet<PartenaireModel> Partenaires { get; set; }
         public DbSet<DiagnosticModel> Diagnostics { get; set; }
+        public PlateformeDbContext(DbContextOptions options) : base(options) { }
     }
 }

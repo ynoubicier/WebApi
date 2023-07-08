@@ -1,16 +1,22 @@
 global using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Models.PlateformeModels;
+using WebApi.Configurations;
+using WebApi.Core.Interfaces;
+using WebApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
+
 builder.Services.AddControllers();
 builder.Services.AddDbContext<PlateformeDbContext>(
-    options => options.UseSqlServer(
+    options => options.UseSqlite(
         builder.Configuration.GetConnectionString("PlateformeCs")
         ));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

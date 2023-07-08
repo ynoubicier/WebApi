@@ -6,7 +6,9 @@ namespace WebApi.Models
     {
         [Key]
         public int idPart { get; set; }
+        [Required]
         public string? NamePart { get; set; }
+        [Required]
         public string? TypePart { get; set; }
     }
 }
